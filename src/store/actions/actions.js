@@ -18,3 +18,18 @@ const Tags = (data) => ({
     payload:  data
 })
 
+const TagID = (data) => ({
+    type: 'AddTagIDRedux',
+    payload:  data
+})
+
+const Words = (data) => ({
+    type: 'AddWordsRedux',
+    payload:  data
+})
+
+const updateTag = (data) => ({
+    type: 'updateWordsTag',
+    payload:  data
+})
+

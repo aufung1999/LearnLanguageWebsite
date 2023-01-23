@@ -14,14 +14,12 @@ function LearnLang() {
 
     const LangID = useSelector(state => state.LangID)
 
-
-
   return (
     <>
         <div>LearnLang</div>
         {/* <div className='btn-toolbar' role="toolbar"> */}
             <div className="d-grid gap-3" >
-                <button className="btn mx-auto border" onClick={()=>{navigate("/home")}}>Home</button>
+                <button className="btn mx-auto border" onClick={()=>{navigate("/")}}>Home</button>
                 <button className="btn mx-auto border" onClick={()=>{navigate("/wordlist")}}>WordList</button>
             </div>
 

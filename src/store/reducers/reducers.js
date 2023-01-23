@@ -49,6 +49,45 @@ const TagsReducer = (state = null, action) => {
     }
 }
 
+const TagIDReducer = (state = null, action) => {
+    switch (action.type) {
+        case 'AddTagIDRedux':
+            return action.payload
+        case 'resetTagIDRedux':
+            return ''
+        default:
+            return state
+    }
+}
+
+//######################################################################################################
+
+const WordsReducer = (state = null, action) => {
+    switch (action.type) {
+        case 'AddWordsRedux':
+            return action.payload
+        case 'updateWordsTag':
+            action.payload && console.log("action.payload: "+ JSON.stringify(action.payload))
+            state && console.log('state: '+ JSON.stringify(state));
+
+            // break
+            return state.map((element) => (
+                action.payload['wordID_List'].includes(element['WordID'])
+                ?
+                    {
+                        ...element,
+                        Tag: action.payload['updateTagValue']
+                    }
+                    :element
+                )
+            )
+        case 'resetWordsRedux':
+            return ''
+        default:
+            return state
+    }
+}
+
 //######################################################################################################
 
 const reducers = combineReducers({
@@ -58,6 +97,9 @@ const reducers = combineReducers({
     LangID: LangIDReducer,
 
     Tags: TagsReducer,
+    TagID: TagIDReducer,
+
+    Words: WordsReducer,
 
 })
 
