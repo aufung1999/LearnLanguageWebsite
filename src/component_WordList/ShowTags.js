@@ -3,12 +3,14 @@ import { db } from '../Firebase';
 import { getDocs, collection, doc, onSnapshot } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import EditTag from './EditTag';                    //      ShowTags(Parent) -> EditTag (Child)
+import DeleteTag from './DeleteTag';
 
 function ShowTags({isClicked}) {
     const [getTagsfromFB, setGetTagsfromFB] = useState(null)
     const [parent_editBtn, set_parent_editBtn] = useState(false) //        Originally, it shoukd not be in this layer(Parent) because of the NOT-rendering situation if it stays in Child layer
 
     const LangID = useSelector(state => state.LangID)   // Redux
+    const Tags = useSelector(state => state.Tags)         // Redux
 
     const dispatch = useDispatch()                      // Redux
 
@@ -35,6 +37,8 @@ function ShowTags({isClicked}) {
 
         getsomething()
 
+        // console.log('Length of Tags: ' + Tags.length);
+
     }, [isClicked, parent_editBtn])
 
 
@@ -45,6 +49,7 @@ function ShowTags({isClicked}) {
             return <>
                     <li key={"ShowTags-"+index} >{tag.Tag}</li>
                     <EditTag tag={tag} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
+                    <DeleteTag tag={tag} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
                    </>
             })
         }

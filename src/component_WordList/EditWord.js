@@ -1,8 +1,9 @@
 import { doc, updateDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../Firebase';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
+
 
 
 
@@ -13,6 +14,8 @@ function EditWord({Word, index, parent_editBtn, set_parent_editBtn}) {
     const LangID = useSelector(state => state.LangID)   // Redux
     const TagID = useSelector(state => state.TagID)     // Redux
     const Tags = useSelector(state => state.Tags)         // Redux
+
+    const dispatch = useDispatch()                      // Redux
 
     const [editBtn, setEditBtn] = useState(false)
 
@@ -36,7 +39,18 @@ function EditWord({Word, index, parent_editBtn, set_parent_editBtn}) {
     }
 
     const updateTaginWord = (selectedTag) => {
-        console.log('selectedTag: '+ selectedTag);
+        let wordID_list = []
+
+
+        wordID_list.push(Word.WordID)
+
+
+        if(wordID_list === []){
+
+        }else{
+            console.log('wordID_list: '+ wordID_list);
+            dispatch({type:"updateWordsTag", payload: {wordID_List: wordID_list, updateTagValue: selectedTag}})
+        }
     }
 
   return (
@@ -50,7 +64,7 @@ function EditWord({Word, index, parent_editBtn, set_parent_editBtn}) {
                     <input type='text' value={editTagInput} onChange={ e => setEditTagInput(e.target.value)}></input>
                     <input type='submit' onClick={()=>set_parent_editBtn(!parent_editBtn)}></input>
                 </form>
-                <DropdownButton title="Tags">
+                <DropdownButton title={(Word.Tag)?Word.Tag:""}>
                     {Tags?.map(Tag => {return <Dropdown.Item value={Tag.Tag} onClick={()=> updateTaginWord(Tag.Tag)} key={Tag.TagID}>{Tag.Tag}</Dropdown.Item>})}
                 </DropdownButton>
             </div>

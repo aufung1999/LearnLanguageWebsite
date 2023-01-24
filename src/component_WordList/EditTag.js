@@ -72,7 +72,7 @@ function EditTag( {tag, index, parent_editBtn, set_parent_editBtn} ) {
             <div key={"editTagInput-"+tag.Tag}>
                 <form onSubmit={(e) => editTaginDB(e)}>
                     <input type='text' value={editTagInput} onChange={ e => setEditTagInput(e.target.value)}></input>
-                    <input type='submit' onClick={()=>set_parent_editBtn(!parent_editBtn)}></input>
+                    <input type='submit' onClick={()=> set_parent_editBtn(!parent_editBtn)}></input>
                 </form>
             </div>
         }

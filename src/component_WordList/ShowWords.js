@@ -3,6 +3,7 @@ import { db } from '../Firebase';
 import { getDocs, collection, doc, onSnapshot } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import EditWord from './EditWord';
+import DeleteWord from './DeleteWord';
 
 function ShowWords({isClicked}) {
     const LangID = useSelector(state => state.LangID)   // Redux
@@ -71,6 +72,7 @@ function ShowWords({isClicked}) {
             return <>
                     <li > Word: {Word.Word} | Tag: {Word.Tag}</li>
                     <EditWord Word={Word} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
+                    <DeleteWord Word={Word} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
                    </>
 
             })
