@@ -19,6 +19,7 @@ function ShowTags({isClicked}) {
     useEffect(()=>{
 
         async function getsomething(){
+
             const docsSnap = await getDocs(collection(db, "Language/", LangID, "/tags"))
 
             docsSnap.forEach((doc) => {
@@ -32,7 +33,7 @@ function ShowTags({isClicked}) {
 
             setGetTagsfromFB(temp_data)
             dispatch({type: 'AddTagsRedux', payload: temp_data})
-            temp_data = []
+            temp_data = []  
         }
 
         getsomething()

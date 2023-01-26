@@ -61,6 +61,8 @@ function EditTag( {tag, index, parent_editBtn, set_parent_editBtn} ) {
         updateDoc(thedocRef, {tag:editTagInput})
 
         getRefTag()
+
+        setEditTagInput("")
     }
 
   return (

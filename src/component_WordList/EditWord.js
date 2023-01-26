@@ -41,6 +41,8 @@ function EditWord({Word, index, parent_editBtn, set_parent_editBtn}) {
     const updateTaginWord = (selectedTag) => {
         let wordID_list = []
 
+        const thedocRef = doc(db, "Language/", LangID, "/words", Word.WordID)
+        updateDoc(thedocRef, {tag: selectedTag})
 
         wordID_list.push(Word.WordID)
 

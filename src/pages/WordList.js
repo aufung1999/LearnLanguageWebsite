@@ -34,7 +34,7 @@ function WordList() {
         e.preventDefault()
 
         const docRef = collection(db, "Language/" + LangID + "/words")
-        await addDoc(docRef, {word: inputValue, tag: selectedTag}) //        ** can edit in the future
+        await addDoc(docRef, {word: inputValue, tag: selectedTag, count: 0}) //        ** can edit in the future
 
         console.log(selectedTag, inputValue);
     }
@@ -45,6 +45,7 @@ function WordList() {
 
         <div className="d-grid gap-3" >
                 <button className="btn mx-auto border" onClick={()=>{navigate("/")}}>Home</button>
+                <button className="btn mx-auto border" onClick={()=>{navigate("/makesentence")}}>Make Sentence</button>
         </div>
 
         <form className="d-flex justify-content-center" onSubmit={(e) => addTagstoDB(e)}>

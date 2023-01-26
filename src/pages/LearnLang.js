@@ -12,8 +12,6 @@ import { db } from '../Firebase';
 function LearnLang() {
     const navigate = useNavigate();
 
-    const LangID = useSelector(state => state.LangID)
-
   return (
     <>
         <div>LearnLang</div>

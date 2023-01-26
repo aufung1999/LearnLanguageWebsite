@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import LearnLang from "./pages/LearnLang";
+import MakeSentence from "./pages/MakeSentence";
 import WordList from "./pages/WordList";
 
 
@@ -18,6 +19,8 @@ function App() {
           <Route exact path="/learnlang" element={<LearnLang/>} />
 
           <Route exact path="/wordlist" element={<WordList/>} />
+
+          <Route exact path="/makesentence" element={<MakeSentence/>} />
       </Routes>
   </Router>
 
