@@ -9,13 +9,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import { applyMiddleware, createStore } from 'redux';
-import { ThunkMiddleware } from 'redux-thunk';
+import thunk from "redux-thunk";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from './store/reducers/reducers';
 
 import { Provider } from 'react-redux';
 
-const composedEnhancer = composeWithDevTools(applyMiddleware(ThunkMiddleware))
+const composedEnhancer = composeWithDevTools(applyMiddleware(thunk ))
 
 const store = createStore(
   reducers,

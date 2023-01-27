@@ -33,7 +33,7 @@ function ShowTags({isClicked}) {
 
             setGetTagsfromFB(temp_data)
             dispatch({type: 'AddTagsRedux', payload: temp_data})
-            temp_data = []  
+            temp_data = []
         }
 
         getsomething()
@@ -49,8 +49,8 @@ function ShowTags({isClicked}) {
             console.log('index: ', index);
             return <>
                     <li key={"ShowTags-"+index} >{tag.Tag}</li>
-                    <EditTag tag={tag} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
-                    <DeleteTag tag={tag} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
+                    <EditTag tag={tag} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn} key={tag.TagID}/>
+                    <DeleteTag tag={tag} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn} key={tag.TagID}/>
                    </>
             })
         }

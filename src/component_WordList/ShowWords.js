@@ -25,7 +25,7 @@ function ShowWords({isClicked}) {
 
                     console.log('Tag: '+ doc.data()['tag']);
 
-                    temp_data.push({Tag: doc.data()['tag'], Word:doc.data()['word'], WordID:doc.id})           //        ** can edit in the future
+                    temp_data.push({Tag: doc.data()['tag'], Word:doc.data()['word'], WordID:doc.id, count: doc.data()['count']})           //        ** can edit in the future
 
                     console.log('temp data: '+ JSON.stringify(temp_data))       //        ** can edit in the future
                 });
@@ -70,7 +70,7 @@ function ShowWords({isClicked}) {
         {Words?.map((Word, index) => {
             console.log('word: ' + Word.Word);
             return <>
-                    <li > Word: {Word.Word} | Tag: {Word.Tag}</li>
+                    <li > Word: {Word.Word} | Tag: {Word.Tag} | Count: {Word.count}</li>
                     <EditWord Word={Word} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
                     <DeleteWord Word={Word} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
                    </>
