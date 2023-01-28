@@ -87,7 +87,57 @@ const WordsReducer = (state = null, action) => {
             return state
     }
 }
+//######################################################################################################
 
+const selectedReducer = (state = {selected:[], selectedArrayID: []}, action) => {
+    switch (action.type){
+        case 'Add_selected':
+            return {...state, selected: [...state.selected, action.payload]}
+        case 'Remove_selected':
+            return {...state, selected: state.selected.filter(word => word.Word !== action.payload.Word)}
+
+        case 'Add_selectedArrayID':
+            return {...state, selectedArrayID: [...state.selectedArrayID, action.payload]}
+
+        case 'Remove_selectedArrayID':
+            return {...state, selectedArrayID: state.selectedArrayID.filter(id => id !== action.payload )}
+
+        default:
+            return state
+    }
+}
+
+//######################################################################################################
+
+const fetchDatabase = (state = [], action) => {
+    switch (action.type){
+        case 'ADD_DatamuseAPIDATA':
+            action.payload && console.log("action.payload: "+ JSON.stringify(action.payload ))
+
+            // [...state, ...action.payload]
+            return [...state, ...action.payload]
+            case 'remove_DatamuseAPIDATA':
+                return ''
+        default:
+            return state
+    }
+}
+
+//######################################################################################################
+
+const tempWordsReducer = (state = [], action) => {
+    switch (action.type){
+        case 'Temp_addData':
+            action.payload && console.log("action.payload: "+ JSON.stringify(action.payload ))
+            // [...state, ...action.payload]
+            return [...state, action.payload]
+
+            case 'Temp_removeData':
+                return ''
+        default:
+            return state
+    }
+}
 //######################################################################################################
 
 const reducers = combineReducers({
@@ -100,6 +150,12 @@ const reducers = combineReducers({
     TagID: TagIDReducer,
 
     Words: WordsReducer,
+
+    Selected: selectedReducer,
+
+    DatamuseAPIData: fetchDatabase,
+
+    Temp: tempWordsReducer
 
 })
 

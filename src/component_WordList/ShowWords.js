@@ -41,30 +41,6 @@ function ShowWords({isClicked}) {
 
     }, [isClicked, parent_editBtn, Tags])
 
-    // useEffect(() => {
-
-    //     async function getsomething(){
-    //         const docsSnap = await getDocs(collection(db, "Language/", LangID, "/words"))
-
-    //         docsSnap.forEach((doc) => {
-
-    //             console.log('Tag: '+ doc.data()['tag']);
-
-    //             temp_data.push({Tag: doc.data()['tag'], Word:doc.data()['word'], WordID:doc.id})           //        ** can edit in the future
-
-    //             console.log('temp data: '+ JSON.stringify(temp_data))       //        ** can edit in the future
-    //         });
-
-    //         // setGetTagsfromFB(temp_data)
-    //         dispatch({type: 'AddWordsRedux', payload: temp_data})
-    //         temp_data = []
-    //     }
-
-    //     getsomething()
-
-    // }, [isClicked, parent_editBtn, Tags])
-
-
   return (
     <div>
         {Words?.map((Word, index) => {
