@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addDatamuseAPIData } from '../store/actions/actions'
-import useFetch from './customHooks/useFetch'
+
 import DisplayDatamuse from './DisplayDatamuse'
 
 function FetchDatamuse( {selected} ) {
