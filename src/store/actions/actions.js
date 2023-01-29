@@ -83,12 +83,68 @@ export const addDatamuseAPIData  = (urls_array)=>{
 }
 
 
-export const temp_addData  = (data, LangID) => {
-    // console.log('data: ' + LangID);
+export const temp_WordsAssociation  = (data, next_word_first_character) => {
+
     return async (dispatch)=>{
-        const docRef = collection(db, "Language/" + LangID + "/temp")
-        await addDoc(docRef, {word: data})
-        .then( dispatch( {type : 'Temp_addData',payload : data} ) )
+
+        dispatch( {type:'-----Temp_wordsAssociation-----'} )
+
+
+        fetch('https://api.datamuse.com/words?rel_trg='+data)
+        .then(resp =>
+            resp.json()
+        )
+        .then(texts => {
+            let texts_array = []
+
+            texts.map(text =>   texts_array.push(text["word"])  );
+            // console.log('texts: ' + JSON.stringify(texts_array));
+
+            dispatch( {type:"Temp_addTrigger", payload: texts_array} )
+        })
+
+        fetch('https://api.datamuse.com/words?rel_jja='+data)
+        .then(resp =>
+            resp.json()
+        )
+        .then(texts => {
+            let texts_array = []
+
+            texts.map(text =>   texts_array.push(text["word"])  );
+            // console.log('texts: ' + JSON.stringify(texts_array));
+
+            dispatch( {type:"Temp_addPopular_Nouns", payload: texts_array} )
+        })
+
+        fetch('https://api.datamuse.com/words?ml='+data)
+        .then(resp =>
+            resp.json()
+        )
+        .then(texts => {
+            let texts_array = []
+
+            texts.map(text =>   texts_array.push(text["word"])  );
+            // console.log('texts: ' + JSON.stringify(texts_array));
+
+            dispatch( {type:"Temp_addSimilarMeaning", payload: texts_array} )
+        })
+
+        if(next_word_first_character != undefined){
+            fetch('https://api.datamuse.com/words?lc='+ data +'&sp='+next_word_first_character+'*')
+            .then(resp =>
+                resp.json()
+            )
+            .then(texts => {
+                let texts_array = []
+    
+                texts.map(text =>   texts_array.push(text["word"])  );
+                // console.log('texts: ' + JSON.stringify(texts_array));
+    
+                dispatch( {type:"Temp_addLeftContext", payload: texts_array} )
+            })
+        }
+
+
     }
 
 }

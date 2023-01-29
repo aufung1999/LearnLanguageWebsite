@@ -1,49 +1,93 @@
 import React, { useEffect, useState } from 'react'
 import { GrammarlyEditorPlugin } from '@grammarly/editor-sdk-react'
 import { Sapling } from "@saplingai/sapling-js/observer";
-
-
-
-// import $ from 'jquery';
-// import * as LanguageTool from 'languagetool-api'
-
-// const languagetool  = require("languagetool-api");
+import { useDispatch, useSelector } from 'react-redux';
+import { temp_WordsAssociation } from '../store/actions/actions';
 
 function CheckSentence( {selected} ) {
+
+    const Trigger = useSelector(state => state.Temp_WA["Trigger"])
+    const Popular_Nouns = useSelector(state => state.Temp_WA["Popular_Nouns"])
+    const Similar_Meaning = useSelector(state => state.Temp_WA["Similar_Meaning"])
+    const Left_Context = useSelector(state => state.Temp_WA["Left_Context"])
+
+    const dispatch = useDispatch()
+
     const [displayValue, setDisplayValue] = useState("")
 
-    let sentence = []
+    const [result, setResult] = useState("")
 
-    selected?.map(word => {
-        sentence.push(word.Word)
-        // sentence.push(" ")
-    })
+    const [globalSentence, setGlobalSentence] = useState(null)
+    const sentence = []
 
     useEffect(() => {
-        // console.log('---sentence---' + sentence);
+
+        selected?.map((word, index) => {
+            sentence.push(word.Word)
+
+            if( selected[index+1] != undefined){
+                // console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!:  '+ JSON.stringify(selected[index+1]["Word"][0]));
+                dispatch( temp_WordsAssociation(word.Word, selected[index+1]["Word"][0]) )
+            }else{
+                console.log('-----------------------------------  ');
+                dispatch( temp_WordsAssociation(word.Word, undefined) )
+            }
+
+        })
+
         const concat_sentence = sentence.join(" ")
         console.log('---sentence---' + concat_sentence);
+
         setDisplayValue(concat_sentence)
+        setGlobalSentence(sentence)
+
     }, [selected])
 
-    const checkSentence = async(e) => {
+    const checkSentence = (e) => {
         e.preventDefault()
-        console.log('event.target: '+ displayValue);
 
+        const Array_Trigger = Object.values(Trigger)                 //convert object to array
+        const Array_Popular_Nouns = Object.values(Popular_Nouns)    //convert object to array
+        const Array_Similar_Meaning = Object.values(Similar_Meaning)    //convert object to array
+        const Array_Left_Context = Object.values(Left_Context)    //convert object to array
+
+        globalSentence.filter((word) => word != globalSentence[0]).map((filtered_globalSentence, index) =>{
+
+            console.log('Array_Trigger: '+ Array_Trigger[index], index);
+
+            const isTriggerIncluded = Array_Trigger[index].includes(filtered_globalSentence)
+            const isPopular_NounsIncluded = Array_Popular_Nouns[index].includes(filtered_globalSentence)
+                                                                    /**********/
+            const isSimilar_MeaningIncluded = Array_Similar_Meaning[index+1].includes(filtered_globalSentence)
+                                                                    /**********/
+            const isLeft_Context = Array_Left_Context[index].includes(filtered_globalSentence)
+
+            const union_APN_ASM = Array_Popular_Nouns[index].filter(value => Array_Similar_Meaning[index+1].includes(value));
+
+            console.log('filteredArray: '+ union_APN_ASM);
+            console.log(index + '   isTriggerIncluded: ' + isTriggerIncluded);
+            console.log(index + '   isPopular_NounsIncluded: ' + isPopular_NounsIncluded);
+            // console.log(index + '   isSimilar_MeaningIncluded: ' + Array_Similar_Meaning[index+1]);
+            console.log(index + '   isLeft_Context: ' + isLeft_Context);
+
+            setResult(isLeft_Context)
+
+        })
+        
     }
-
-
 
   return (
     <div>
         <form onSubmit={checkSentence}>
-            {/* <div>{sentence}</div> */}
-            <input value={displayValue} hidden="false"></input>
+
             <GrammarlyEditorPlugin clientId="client_R4q5cLZtGpLoz2LPgg8x4Q" config={{ documentDialect: "british" }} >
                 <textarea value={displayValue}></textarea>
             </GrammarlyEditorPlugin>
             <input type="submit"></input>
+
         </form>
+
+        {console.log('result: ' + result)}
 
     </div>
   )

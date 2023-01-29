@@ -12,7 +12,7 @@ function FetchDatamuse( {selected} ) {
 
     Words?.map(word => {
         console.log('word.Word '+ word.Word)
-        urls_array.push("https://api.datamuse.com/words?ml="+word.Word)
+        urls_array.push("https://api.datamuse.com/words?rel_jja="+word.Word)
 
     })
 

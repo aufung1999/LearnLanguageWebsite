@@ -112,9 +112,8 @@ const selectedReducer = (state = {selected:[], selectedArrayID: []}, action) => 
 const fetchDatabase = (state = [], action) => {
     switch (action.type){
         case 'ADD_DatamuseAPIDATA':
-            action.payload && console.log("action.payload: "+ JSON.stringify(action.payload ))
+            // action.payload && console.log("action.payload: "+ JSON.stringify(action.payload ))
 
-            // [...state, ...action.payload]
             return [...state, ...action.payload]
             case 'remove_DatamuseAPIDATA':
                 return ''
@@ -125,19 +124,31 @@ const fetchDatabase = (state = [], action) => {
 
 //######################################################################################################
 
-const tempWordsReducer = (state = [], action) => {
-    switch (action.type){
-        case 'Temp_addData':
-            action.payload && console.log("action.payload: "+ JSON.stringify(action.payload ))
-            // [...state, ...action.payload]
-            return [...state, action.payload]
+//######################################################################################################
 
-            case 'Temp_removeData':
-                return ''
+const Temp_wordsAssociationReducer = (state = {Trigger:[], Popular_Nouns:[], Similar_Meaning:[], Left_Context:[]}, action) => {
+    switch (action.type){
+        case 'Temp_addTrigger':
+            return {...state, Trigger: [...state.Trigger, action.payload]}
+
+        case 'Temp_addPopular_Nouns':
+            return {...state, Popular_Nouns: [...state.Popular_Nouns, action.payload]}
+
+        case 'Temp_addSimilarMeaning':
+
+            return {...state, Similar_Meaning: [...state.Similar_Meaning, action.payload]}
+
+        case 'Temp_addLeftContext':
+
+            return {...state, Left_Context: [...state.Left_Context, action.payload]}
+
+        case '-----Temp_wordsAssociation-----':
+            return {Trigger:[], Popular_Nouns:[], Similar_Meaning:[], Left_Context:[]}
         default:
             return state
     }
 }
+
 //######################################################################################################
 
 const reducers = combineReducers({
@@ -155,7 +166,7 @@ const reducers = combineReducers({
 
     DatamuseAPIData: fetchDatabase,
 
-    Temp: tempWordsReducer
+    Temp_WA: Temp_wordsAssociationReducer,
 
 })
 

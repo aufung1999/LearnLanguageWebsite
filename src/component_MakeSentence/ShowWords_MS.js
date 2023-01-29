@@ -32,6 +32,8 @@ function ShowWords_MS() {
       dispatch( {type: 'Remove_selected', payload: unselected_word} )
 
       dispatch( {type: 'Remove_selectedArrayID', payload: unselected_word.WordID} )
+
+      dispatch( {type:"-----Temp_wordsAssociation-----"} )
     }
 
 
