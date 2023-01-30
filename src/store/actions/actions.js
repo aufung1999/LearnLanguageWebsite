@@ -38,6 +38,24 @@ const updateTag = (data) => ({
     payload:  data
 })
 
+//-----Make Sentence Game-----
+
+export const random_Words = (data) => {
+
+    // Thunk Function
+    return async (dispatch)=>{
+        var RandomNumber = Math.floor(Math.random() * 100) + 1 ;
+        console.log('RandomNumber: ' + RandomNumber, data)
+
+        dispatch( {type:'addRandomWrods', payload: {Word: data, random_value: RandomNumber}, } )
+    }
+}
+const removeWord_accepted = (data) => ({
+    type: "removeWord_accepted",
+    payload: data
+})
+//-----Make Sentence Game-----
+
 const selected = (data) => ({
     type: 'Add_selected',
     payload:  data
@@ -57,6 +75,8 @@ const remove_selectedArrayID = (data) => ({
     type: 'Remove_selectedArrayID',
     payload:  data
 })
+
+//-----Datamuse-----
 
 export const addDatamuseAPIData  = (urls_array)=>{
 
@@ -81,6 +101,13 @@ export const addDatamuseAPIData  = (urls_array)=>{
         // action has completed.
     }
 }
+
+const removeDatamuseWord_accepted = (data) => ({
+    type: "removeDatamuseWord_accepted",
+    payload: data
+})
+
+//-----Datamuse-----
 
 
 export const temp_WordsAssociation  = (data, next_word_first_character) => {
@@ -136,10 +163,10 @@ export const temp_WordsAssociation  = (data, next_word_first_character) => {
             )
             .then(texts => {
                 let texts_array = []
-    
+
                 texts.map(text =>   texts_array.push(text["word"])  );
                 // console.log('texts: ' + JSON.stringify(texts_array));
-    
+
                 dispatch( {type:"Temp_addLeftContext", payload: texts_array} )
             })
         }
@@ -148,4 +175,9 @@ export const temp_WordsAssociation  = (data, next_word_first_character) => {
     }
 
 }
+
+const sentence_accept = (data) => ({
+    type: 'sentence_accept',
+    payload:  data
+})
 

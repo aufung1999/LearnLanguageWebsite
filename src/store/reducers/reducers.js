@@ -89,6 +89,24 @@ const WordsReducer = (state = null, action) => {
 }
 //######################################################################################################
 
+const RandomWordsReducer = (state = [], action) => {
+    switch (action.type){
+        case 'addRandomWrods':
+            return [...state, action.payload]
+        case 'removeWord_accepted':
+            console.log('                                   action.payload: ' + action.payload)
+            return state?.filter(word =>
+                word.Word !== action.payload["Word"]
+            )
+        case 'reload_RandomWords':
+            return []
+        default:
+            return state
+    }
+}
+
+//######################################################################################################
+
 const selectedReducer = (state = {selected:[], selectedArrayID: []}, action) => {
     switch (action.type){
         case 'Add_selected':
@@ -101,6 +119,9 @@ const selectedReducer = (state = {selected:[], selectedArrayID: []}, action) => 
 
         case 'Remove_selectedArrayID':
             return {...state, selectedArrayID: state.selectedArrayID.filter(id => id !== action.payload )}
+
+        case 'Remove_all_selected' :
+            return {selected:[], selectedArrayID: []}
 
         default:
             return state
@@ -115,14 +136,16 @@ const fetchDatabase = (state = [], action) => {
             // action.payload && console.log("action.payload: "+ JSON.stringify(action.payload ))
 
             return [...state, ...action.payload]
-            case 'remove_DatamuseAPIDATA':
-                return ''
+        case 'removeDatamuseWord_accepted':
+            return state?.filter(word =>
+                word.word !== action.payload["Word"]
+            )
+        case 'remove_DatamuseAPIDATA':
+            return ''
         default:
             return state
     }
 }
-
-//######################################################################################################
 
 //######################################################################################################
 
@@ -151,6 +174,16 @@ const Temp_wordsAssociationReducer = (state = {Trigger:[], Popular_Nouns:[], Sim
 
 //######################################################################################################
 
+const sentence_acceptReducer = ( state = "", action ) => {
+    switch (action.type){
+        case 'sentence_accept':
+            return action.payload
+        default:
+            return state
+    }
+}
+//######################################################################################################
+
 const reducers = combineReducers({
     isEditLangBtn: isEditLangBtnReducer,
     isDeleteLangBtn: isDeleteLangBtnReducer,
@@ -162,11 +195,17 @@ const reducers = combineReducers({
 
     Words: WordsReducer,
 
+    //-----Make Sentence Game-----
+    Random_Words: RandomWordsReducer,
+
     Selected: selectedReducer,
 
     DatamuseAPIData: fetchDatabase,
 
     Temp_WA: Temp_wordsAssociationReducer,
+
+    sentence_accept: sentence_acceptReducer,
+
 
 })
 

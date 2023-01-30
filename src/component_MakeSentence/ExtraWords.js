@@ -12,7 +12,7 @@ function ExtraWords( {element} ) {
 
     const dispatch = useDispatch()       // Redux
 
-    let this_uuid = uuid.v4()                                               // need to adjust although its not affectin the whole system now THE uuid
+    let this_uuid = uuid.v4()                // need to adjust although its not affectin the whole system now THE uuid
 
 
     const selected_words = selected?.map(word => {

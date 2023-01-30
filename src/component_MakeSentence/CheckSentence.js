@@ -10,6 +10,7 @@ function CheckSentence( {selected} ) {
     const Popular_Nouns = useSelector(state => state.Temp_WA["Popular_Nouns"])
     const Similar_Meaning = useSelector(state => state.Temp_WA["Similar_Meaning"])
     const Left_Context = useSelector(state => state.Temp_WA["Left_Context"])
+    const sentence_accept = useSelector(state => state.sentence_accept)
 
     const dispatch = useDispatch()
 
@@ -18,6 +19,7 @@ function CheckSentence( {selected} ) {
     const [result, setResult] = useState("")
 
     const [globalSentence, setGlobalSentence] = useState(null)
+
     const sentence = []
 
     useEffect(() => {
@@ -51,16 +53,16 @@ function CheckSentence( {selected} ) {
         const Array_Similar_Meaning = Object.values(Similar_Meaning)    //convert object to array
         const Array_Left_Context = Object.values(Left_Context)    //convert object to array
 
-        globalSentence.filter((word) => word != globalSentence[0]).map((filtered_globalSentence, index) =>{
+        globalSentence.filter((word) => word != globalSentence[0]).map((filtered_globalSentence_word, index) =>{
 
             console.log('Array_Trigger: '+ Array_Trigger[index], index);
 
-            const isTriggerIncluded = Array_Trigger[index].includes(filtered_globalSentence)
-            const isPopular_NounsIncluded = Array_Popular_Nouns[index].includes(filtered_globalSentence)
+            const isTriggerIncluded = Array_Trigger[index].includes(filtered_globalSentence_word)
+            const isPopular_NounsIncluded = Array_Popular_Nouns[index].includes(filtered_globalSentence_word)
                                                                     /**********/
-            const isSimilar_MeaningIncluded = Array_Similar_Meaning[index+1].includes(filtered_globalSentence)
+            const isSimilar_MeaningIncluded = Array_Similar_Meaning[index+1].includes(filtered_globalSentence_word)
                                                                     /**********/
-            const isLeft_Context = Array_Left_Context[index].includes(filtered_globalSentence)
+            const isLeft_Context = Array_Left_Context[index].includes(filtered_globalSentence_word)
 
             const union_APN_ASM = Array_Popular_Nouns[index].filter(value => Array_Similar_Meaning[index+1].includes(value));
 
@@ -70,11 +72,32 @@ function CheckSentence( {selected} ) {
             // console.log(index + '   isSimilar_MeaningIncluded: ' + Array_Similar_Meaning[index+1]);
             console.log(index + '   isLeft_Context: ' + isLeft_Context);
 
-            setResult(isLeft_Context)
-
+            if(union_APN_ASM.length !=0 || isTriggerIncluded == true || isPopular_NounsIncluded == true || isLeft_Context == true){
+                setResult(true)
+                dispatch( { type: "sentence_accept", payload: "accept"})
+                // .then(dispatch( {type:"removeWord_accepted", payload: filtered_globalSentence_word} ) )
+            }else{
+                setResult(false)
+                dispatch( { type: "sentence_accept", payload: "reject"})
+            }
         })
-        
+        // console.log('   result inside check function: ' + result)
     }
+
+    useEffect(() => {
+        console.log('result: ' + sentence_accept)
+        if(sentence_accept == "accept"){
+            selected?.map(word => {
+                console.log('   word: ' + word)
+                dispatch( {type:"removeWord_accepted", payload: word} )
+                dispatch( {type:"removeDatamuseWord_accepted", payload: word} )
+            })
+            dispatch( {type:"Remove_all_selected"} )
+        }
+        else if(sentence_accept == "reject"){
+            dispatch( {type:"Remove_all_selected"} )
+        }
+    }, [sentence_accept])
 
   return (
     <div>
@@ -87,7 +110,7 @@ function CheckSentence( {selected} ) {
 
         </form>
 
-        {console.log('result: ' + result)}
+
 
     </div>
   )
