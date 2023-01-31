@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CheckSentence from './CheckSentence';
 import FetchDatamuse from './FetchDatamuse';
 import { random_Words } from '../store/actions/actions';
+// import useRandomWords from './customHooks/useRandomWords';
 
 
 
@@ -13,14 +14,9 @@ function ShowWords_MS() {
     const LangID = useSelector(state => state.LangID)   // Redux
     const Words = useSelector(state => state.Words)       // Redux
 
-    const Random_Words = useSelector(state => {
-      return state.Random_Words.map(word => {
-          if (word.random_value > 50){
-            return word
-          }
-        }).filter(word => word != null)
+    const Random_Words = useSelector(state => state.Random_Words)
 
-    })
+    localStorage.setItem('Random_Words',Random_Words)
 
     const selected = useSelector(state => state.Selected.selected)                  //      \ C   m   i   a   i   n
     // const selectedArrayID = useSelector(state => state.Selected.selectedArrayID)    //      /   o   b   n   t   o
@@ -32,7 +28,7 @@ function ShowWords_MS() {
       dispatch({type:"reload_RandomWords"})
 
       Words?.map(word => {
-        dispatch(random_Words(word.Word))
+        dispatch(random_Words(word))             //do not only add the word.Word, but also the firebase document ID   change from word.Word --> word (which is the whole object including the fireBase document ID)
       })
 
       console.log('Random_Words: ' + JSON.stringify(Random_Words))

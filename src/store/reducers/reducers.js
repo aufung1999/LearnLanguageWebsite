@@ -92,6 +92,7 @@ const WordsReducer = (state = null, action) => {
 const RandomWordsReducer = (state = [], action) => {
     switch (action.type){
         case 'addRandomWrods':
+            console.log('action.payload: ' + JSON.stringify(action.payload))
             return [...state, action.payload]
         case 'removeWord_accepted':
             console.log('                                   action.payload: ' + action.payload)
@@ -184,6 +185,31 @@ const sentence_acceptReducer = ( state = "", action ) => {
 }
 //######################################################################################################
 
+const count_downReducer = ( state = 0, action ) => {
+    switch (action.type){
+        case 'initialize_count_down':
+            return action.payload
+        case 'count_down':
+            return action.payload
+        default:
+            return state
+    }
+}
+
+//######################################################################################################
+
+const accepted_phraseReducer = ( state = [], action ) => {
+    switch (action.type){
+        case 'accepted_phrase':
+            return action.payload
+        default:
+            return state
+    }
+}
+
+
+//######################################################################################################
+
 const reducers = combineReducers({
     isEditLangBtn: isEditLangBtnReducer,
     isDeleteLangBtn: isDeleteLangBtnReducer,
@@ -205,6 +231,8 @@ const reducers = combineReducers({
     Temp_WA: Temp_wordsAssociationReducer,
 
     sentence_accept: sentence_acceptReducer,
+
+    count_down: count_downReducer,
 
 
 })

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 
 import { db } from '../../Firebase'
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
+import { addDoc, getDoc, collection, doc, setDoc, updateDoc, firebase } from 'firebase/firestore'
 
 const isEditLangBtn = () => ({
     type: 'Clicked',
@@ -47,7 +47,7 @@ export const random_Words = (data) => {
         var RandomNumber = Math.floor(Math.random() * 100) + 1 ;
         console.log('RandomNumber: ' + RandomNumber, data)
 
-        dispatch( {type:'addRandomWrods', payload: {Word: data, random_value: RandomNumber}, } )
+        dispatch( {type:'addRandomWrods', payload: {...data, random_value: RandomNumber} } )
     }
 }
 const removeWord_accepted = (data) => ({
@@ -181,3 +181,47 @@ const sentence_accept = (data) => ({
     payload:  data
 })
 
+//-----CountDown----------------------------------------------------------------------------------------------------
+
+const count_down = (data) => ({
+    type: 'count_down',
+    payload:  data
+})
+
+const initialize_count_down = (data) => ({
+    type: 'initialize_count_down',
+    payload:  data
+})
+
+//-----CountDown----------------------------------------------------------------------------------------------------
+
+//-----Accepted Phrase/ sentence----------------------------------------------------------------------------------------------------
+
+export const accepted_phrase = (data, LangID) => {
+    console.log('data: ' + JSON.stringify(data))
+    // const docRef = collection(db, "Language/" + LangID + "/tags")
+
+    return async(dispatch) => {
+        if(data.WordID != undefined){
+            const docRef = doc(db, "Language/" + LangID + "/words/" + data.WordID )
+            console.log('docRef: ' + JSON.stringify(docRef))
+            const docSnap = await getDoc(docRef);
+            console.log('docSnap: ' + JSON.stringify(docSnap.data()['count']))
+            // const count = docSnap.data()['count']
+            updateDoc (docRef, {count: docSnap.data()['count']+1})
+        }
+
+
+
+    }
+}
+
+
+
+
+// const initialize_count_down = (data) => ({
+//     type: 'initialize_count_down',
+//     payload:  data
+// })
+
+//-----Accepted Phrase/ sentence----------------------------------------------------------------------------------------------------

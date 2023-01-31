@@ -20,7 +20,7 @@ function DeleteWord( {Word, index, parent_editBtn, set_parent_editBtn} ) {
     useEffect(() => {
 
         if (deleteBtn){
-            const thedocRef = doc(db, "Language/", LangID, "/words", Word.WordID)
+            const thedocRef = doc(db, "Language/", LangID, "/words/", Word.WordID)
             // console.log("delete BTN docREF: " + JSON.stringify(thedocRef))
 
             deleteDoc(thedocRef)

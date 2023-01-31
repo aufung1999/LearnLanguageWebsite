@@ -25,7 +25,7 @@ function EditTag( {tag, index, parent_editBtn, set_parent_editBtn} ) {
 
     const getRefTag = async() => {
         // Get a refernce tag so that in later section can apply the refence into the where clause
-        const thedocRef = doc(db, "Language/", LangID, "/tags", tag.TagID)
+        const thedocRef = doc(db, "Language/", LangID, "/tags/", tag.TagID)
 
         const docSnap = await getDoc(thedocRef)
 
@@ -53,7 +53,7 @@ function EditTag( {tag, index, parent_editBtn, set_parent_editBtn} ) {
     const editTaginDB = (e) => {
         e.preventDefault()
 
-        const thedocRef = doc(db, "Language/", LangID, "/tags", tag.TagID)
+        const thedocRef = doc(db, "Language/", LangID, "/tags/", tag.TagID)
 
         // console.log('thedocRef: '+ thedocRef);
 

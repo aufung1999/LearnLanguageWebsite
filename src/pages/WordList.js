@@ -21,6 +21,8 @@ function WordList() {
     const LangID = useSelector(state => state.LangID)
     const Tags = useSelector(state => state.Tags)
 
+    localStorage.setItem('LangID', LangID);
+
     async function addTagstoDB(e){
         e.preventDefault()
 

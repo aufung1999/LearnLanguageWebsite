@@ -20,7 +20,7 @@ function DeleteTag ( {tag, index, parent_editBtn, set_parent_editBtn} ) {
   useEffect(() => {
 
     if (deleteBtn){
-        const thedocRef = doc(db, "Language/", LangID, "/tags", tag.TagID)
+        const thedocRef = doc(db, "Language/", LangID, "/tags/", tag.TagID)
         // console.log("delete BTN docREF: " + JSON.stringify(thedocRef))
 
         deleteDoc(thedocRef)

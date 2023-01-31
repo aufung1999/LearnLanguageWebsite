@@ -3,9 +3,14 @@ import { GrammarlyEditorPlugin } from '@grammarly/editor-sdk-react'
 import { Sapling } from "@saplingai/sapling-js/observer";
 import { useDispatch, useSelector } from 'react-redux';
 import { temp_WordsAssociation } from '../store/actions/actions';
+import { accepted_phrase } from '../store/actions/actions';
+
+import { db } from '../Firebase';
+import { doc, updateDoc, collection, query, where, getDoc, getDocs } from 'firebase/firestore';
 
 function CheckSentence( {selected} ) {
 
+    const LangID = useSelector(state => state.LangID)
     const Trigger = useSelector(state => state.Temp_WA["Trigger"])
     const Popular_Nouns = useSelector(state => state.Temp_WA["Popular_Nouns"])
     const Similar_Meaning = useSelector(state => state.Temp_WA["Similar_Meaning"])
@@ -19,6 +24,8 @@ function CheckSentence( {selected} ) {
     const [result, setResult] = useState("")
 
     const [globalSentence, setGlobalSentence] = useState(null)
+
+    const [isClicked, setIsClicked] = useState(false)
 
     const sentence = []
 
@@ -81,23 +88,33 @@ function CheckSentence( {selected} ) {
                 dispatch( { type: "sentence_accept", payload: "reject"})
             }
         })
-        // console.log('   result inside check function: ' + result)
+
+        setIsClicked(!isClicked)
     }
 
     useEffect(() => {
         console.log('result: ' + sentence_accept)
         if(sentence_accept == "accept"){
+
+
+
             selected?.map(word => {
                 console.log('   word: ' + word)
+                dispatch( accepted_phrase(word, LangID) )
                 dispatch( {type:"removeWord_accepted", payload: word} )
                 dispatch( {type:"removeDatamuseWord_accepted", payload: word} )
+
             })
             dispatch( {type:"Remove_all_selected"} )
+            dispatch( { type: "sentence_accept", payload: ""})
         }
         else if(sentence_accept == "reject"){
             dispatch( {type:"Remove_all_selected"} )
+            dispatch( { type: "sentence_accept", payload: ""})
         }
-    }, [sentence_accept])
+
+
+    }, [isClicked])
 
   return (
     <div>
