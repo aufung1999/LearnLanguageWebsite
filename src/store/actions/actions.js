@@ -196,32 +196,34 @@ const initialize_count_down = (data) => ({
 //-----CountDown----------------------------------------------------------------------------------------------------
 
 //-----Accepted Phrase/ sentence----------------------------------------------------------------------------------------------------
+           
+        //This one does not use redux, only put it here for updating data in firebase
 
 export const accepted_phrase = (data, LangID) => {
     console.log('data: ' + JSON.stringify(data))
     // const docRef = collection(db, "Language/" + LangID + "/tags")
 
     return async(dispatch) => {
-        if(data.WordID != undefined){
+        if(data["count"] != undefined){
             const docRef = doc(db, "Language/" + LangID + "/words/" + data.WordID )
-            console.log('docRef: ' + JSON.stringify(docRef))
+            // console.log('docRef: ' + JSON.stringify(docRef))
             const docSnap = await getDoc(docRef);
-            console.log('docSnap: ' + JSON.stringify(docSnap.data()['count']))
+            // console.log('docSnap: ' + JSON.stringify(docSnap.data()['count']))
             // const count = docSnap.data()['count']
             updateDoc (docRef, {count: docSnap.data()['count']+1})
         }
-
-
+        // dispatch( {type:"accepted_phrase", payload: data} )
 
     }
 }
 
+//-----Accepted Phrase/ sentence----------------------------------------------------------------------------------------------------
 
+//-----storeAccepted Phrase/ sentence----------------------------------------------------------------------------------------------------
 
-
-// const initialize_count_down = (data) => ({
-//     type: 'initialize_count_down',
-//     payload:  data
-// })
+const store_accepted_phrase = (data) => ({
+    type: 'store_accepted_phrase',
+    payload:  data
+})
 
 //-----Accepted Phrase/ sentence----------------------------------------------------------------------------------------------------

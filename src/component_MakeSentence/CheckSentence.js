@@ -96,7 +96,7 @@ function CheckSentence( {selected} ) {
         console.log('result: ' + sentence_accept)
         if(sentence_accept == "accept"){
 
-
+            dispatch( {type:"store_accepted_phrase", payload: selected} )
 
             selected?.map(word => {
                 console.log('   word: ' + word)

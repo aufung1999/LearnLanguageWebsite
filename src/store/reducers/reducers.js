@@ -198,10 +198,10 @@ const count_downReducer = ( state = 0, action ) => {
 
 //######################################################################################################
 
-const accepted_phraseReducer = ( state = [], action ) => {
+const store_accepted_phraseReducer = ( state = [], action ) => {
     switch (action.type){
-        case 'accepted_phrase':
-            return action.payload
+        case 'store_accepted_phrase':
+            return [...state, action.payload]
         default:
             return state
     }
@@ -231,6 +231,7 @@ const reducers = combineReducers({
     Temp_WA: Temp_wordsAssociationReducer,
 
     sentence_accept: sentence_acceptReducer,
+    store_accepted_phrase: store_accepted_phraseReducer, 
 
     count_down: count_downReducer,
 
