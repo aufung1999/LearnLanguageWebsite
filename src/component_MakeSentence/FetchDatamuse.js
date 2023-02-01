@@ -16,7 +16,6 @@ function FetchDatamuse( ) {
 
     Random_Words?.map(word => {
         urls_array.push("https://api.datamuse.com/words?rel_jja="+word.Word)
-
     })
 
     const hint = () => {
@@ -24,7 +23,7 @@ function FetchDatamuse( ) {
     }
 
   return (
-    <div>
+    <div key="FetchDatamuse">
       <button onClick={hint}>Hint</button>
         <DisplayDatamuse/>
     </div>

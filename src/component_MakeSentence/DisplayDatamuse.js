@@ -10,9 +10,9 @@ function DisplayDatamuse( ) {
   return (
     <div>
         {
-            Object.entries(DatamuseAPIData).map(entry=> entry[1])?.map((element)=> {
-                // console.log('   element: ' + JSON.stringify(element));
-                return <ExtraWords element={element}/>
+            Object.entries(DatamuseAPIData).map(entry=> entry[1])?.map((element, index)=> {
+                console.log('   element: ' + JSON.stringify(element));
+                return <ExtraWords element={element} index={index}/>
             })
         }
     </div>

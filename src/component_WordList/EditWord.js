@@ -67,7 +67,7 @@ function EditWord({Word, index, parent_editBtn, set_parent_editBtn}) {
                     <input type='submit' onClick={()=>set_parent_editBtn(!parent_editBtn)}></input>
                 </form>
                 <DropdownButton title={(Word.Tag)?Word.Tag:""}>
-                    {Tags?.map(Tag => {return <Dropdown.Item value={Tag.Tag} onClick={()=> updateTaginWord(Tag.Tag)} key={Tag.TagID}>{Tag.Tag}</Dropdown.Item>})}
+                    {Tags?.map(Tag => {return <Dropdown.Item value={Tag.Tag} onClick={()=> updateTaginWord(Tag.Tag)} key={"Dropdown-" + Tag.TagID}>{Tag.Tag}</Dropdown.Item>})}
                 </DropdownButton>
             </div>
         }

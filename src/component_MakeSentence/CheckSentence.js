@@ -4,6 +4,7 @@ import { Sapling } from "@saplingai/sapling-js/observer";
 import { useDispatch, useSelector } from 'react-redux';
 import { temp_WordsAssociation } from '../store/actions/actions';
 import { accepted_phrase } from '../store/actions/actions';
+import { useNavigate } from "react-router";
 
 import { db } from '../Firebase';
 import { doc, updateDoc, collection, query, where, getDoc, getDocs } from 'firebase/firestore';
@@ -16,8 +17,10 @@ function CheckSentence( {selected} ) {
     const Similar_Meaning = useSelector(state => state.Temp_WA["Similar_Meaning"])
     const Left_Context = useSelector(state => state.Temp_WA["Left_Context"])
     const sentence_accept = useSelector(state => state.sentence_accept)
+    const Random_Words = useSelector(state => state.Random_Words)
 
     const dispatch = useDispatch()
+    const navigate = useNavigate();
 
     const [displayValue, setDisplayValue] = useState("")
 
@@ -94,6 +97,8 @@ function CheckSentence( {selected} ) {
 
     useEffect(() => {
         console.log('result: ' + sentence_accept)
+        console.log('Random_Words.length : ' + Random_Words.length )
+
         if(sentence_accept == "accept"){
 
             dispatch( {type:"store_accepted_phrase", payload: selected} )
@@ -105,6 +110,7 @@ function CheckSentence( {selected} ) {
                 dispatch( {type:"removeDatamuseWord_accepted", payload: word} )
 
             })
+
             dispatch( {type:"Remove_all_selected"} )
             dispatch( { type: "sentence_accept", payload: ""})
         }
@@ -112,22 +118,27 @@ function CheckSentence( {selected} ) {
             dispatch( {type:"Remove_all_selected"} )
             dispatch( { type: "sentence_accept", payload: ""})
         }
+    }, [isClicked, Random_Words])
 
+    // useEffect(() => {
+    //     if(Random_Words.length == 0){
 
-    }, [isClicked])
+    //         navigate("/result")
+    //     }
+    // },[Random_Words.length ])
 
   return (
     <div>
         <form onSubmit={checkSentence}>
 
             <GrammarlyEditorPlugin clientId="client_R4q5cLZtGpLoz2LPgg8x4Q" config={{ documentDialect: "british" }} >
-                <textarea value={displayValue}></textarea>
+                {/* <textarea value={displayValue}></textarea> */}
             </GrammarlyEditorPlugin>
             <input type="submit"></input>
 
         </form>
 
-
+        <button className={Random_Words.length == 0? "visible": "invisible"} onClick={()=>{navigate("/result")}}>Result</button>
 
     </div>
   )

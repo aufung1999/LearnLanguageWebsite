@@ -23,11 +23,11 @@ function ShowWords({isClicked}) {
             onSnapshot( collection(db, "Language/", LangID, "/words"), snapshot=>{
                     snapshot.forEach((doc) => {
 
-                    console.log('Tag: '+ doc.data()['tag']);
+                    // console.log('Tag: '+ doc.data()['tag']);
 
                     temp_data.push({Tag: doc.data()['tag'], Word:doc.data()['word'], WordID:doc.id, count: doc.data()['count']})           //        ** can edit in the future
 
-                    console.log('temp data: '+ JSON.stringify(temp_data))       //        ** can edit in the future
+                    // console.log('temp data: '+ JSON.stringify(temp_data))       //        ** can edit in the future
                 });
 
                 // setGetTagsfromFB(temp_data)
@@ -45,11 +45,11 @@ function ShowWords({isClicked}) {
     <div>
         {Words?.map((Word, index) => {
             console.log('word: ' + Word.Word);
-            return <>
-                    <li > Word: {Word.Word} | Tag: {Word.Tag} | Count: {Word.count}</li>
+            return <div key={"ShowTags-"+Word.WordID}>
+                    <li> Word: {Word.Word} | Tag: {Word.Tag} | Count: {Word.count}</li>
                     <EditWord Word={Word} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
                     <DeleteWord Word={Word} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
-                   </>
+                   </div>
 
             })
         }

@@ -231,7 +231,7 @@ const reducers = combineReducers({
     Temp_WA: Temp_wordsAssociationReducer,
 
     sentence_accept: sentence_acceptReducer,
-    store_accepted_phrase: store_accepted_phraseReducer, 
+    store_accepted_phrase: store_accepted_phraseReducer,
 
     count_down: count_downReducer,
 

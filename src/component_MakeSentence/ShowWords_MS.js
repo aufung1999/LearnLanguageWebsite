@@ -67,42 +67,39 @@ function ShowWords_MS() {
 
   return (
     <div>
-      <p>
-      {Random_Words?.map(word => {         // Can edit here in the future
 
+      {Random_Words?.map((word,index) => {         // Can edit here in the future
 
-        return <>
-
+        return <div key = {"Random_Words" + {index}}>
           <button type='button'
             className={selected_words.includes(word.Word)? "invisible": "visible"}
             value={word.Word}
-            onClick={(e) => selectedWord(e, word)}>
+            onClick={(e) => selectedWord(e, word)}
+            key = {"Random_Words" + {index}}
+            >
               {word.Word}
           </button>
-
-          </>
+          </div>
         })
       }
-      </p>
 
-      <p>
         <FetchDatamuse Random_Words={Random_Words}/>
-      </p>
 
-      <p>
       {
-        selected?.map(selectedWord => {
+        selected?.map((selectedWord, index) => {
           console.log('selectedWord: '+ selectedWord);
-          return <>
+
+          return <div key = {"selected"+ index}>
             <button type='button'
               className={selected_words.includes(selectedWord.Word)? "visible": "invisible"}
-              onClick={(e) => unselectedWord(e, selectedWord)}>
+              onClick={(e) => unselectedWord(e, selectedWord)}
+              key = {"selected"+ index}
+              >
                 {selectedWord.Word}
             </button>
-          </>
+          </div>
         })
       }
-      </p>
 
       <CheckSentence selected={selected}/>
     </div>

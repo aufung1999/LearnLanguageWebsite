@@ -165,7 +165,7 @@ export const temp_WordsAssociation  = (data, next_word_first_character) => {
                 let texts_array = []
 
                 texts.map(text =>   texts_array.push(text["word"])  );
-                // console.log('texts: ' + JSON.stringify(texts_array));
+                // texts: ' + JSON.stringify(texts_array));
 
                 dispatch( {type:"Temp_addLeftContext", payload: texts_array} )
             })
@@ -196,7 +196,7 @@ const initialize_count_down = (data) => ({
 //-----CountDown----------------------------------------------------------------------------------------------------
 
 //-----Accepted Phrase/ sentence----------------------------------------------------------------------------------------------------
-           
+
         //This one does not use redux, only put it here for updating data in firebase
 
 export const accepted_phrase = (data, LangID) => {

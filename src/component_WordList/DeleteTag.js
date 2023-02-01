@@ -29,7 +29,7 @@ function DeleteTag ( {tag, index, parent_editBtn, set_parent_editBtn} ) {
 
   return (
     <div>
-      <button onClick={deleteTag} key={"DeleteBtn-"+index} > Delete </button>
+      <button onClick={deleteTag} key={"DeleteTagBtn-"+index} > Delete </button>
     </div>
   )
 }

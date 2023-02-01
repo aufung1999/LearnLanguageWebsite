@@ -6,13 +6,13 @@ import Home from "./pages/Home";
 import LearnLang from "./pages/LearnLang";
 import MakeSentence from "./pages/MakeSentence";
 import WordList from "./pages/WordList";
+import Result from "./pages/Result";
 
 
 function App() {
   return (
 
     <Router>
-      {/* <Home></Home> */}
       <Routes>
           <Route exact path="/" element={<Home/>} />
 
@@ -21,6 +21,8 @@ function App() {
           <Route exact path="/wordlist" element={<WordList/>} />
 
           <Route exact path="/makesentence" element={<MakeSentence/>} />
+
+          <Route exact path="/result" element={<Result/>} />
       </Routes>
   </Router>
 

@@ -9,7 +9,7 @@ function MakeSentence() {
   return (
     <div>
         <button className="btn mx-auto border" onClick={()=>{navigate("/wordlist")}}>Word List</button>
-        <ClockScript/>
+        {/* <ClockScript/> */}
         <ShowWords_MS/>
     </div>
   )

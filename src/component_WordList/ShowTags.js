@@ -24,11 +24,11 @@ function ShowTags({isClicked}) {
 
             docsSnap.forEach((doc) => {
 
-                console.log('TagID: ' + doc.id);
+                // console.log('TagID: ' + doc.id);
 
                 temp_data.push({Tag:doc.data()['tag'], TagID:doc.id})           //        ** can edit in the future
 
-                console.log('temp data: '+ temp_data)       //        ** can edit in the future
+                // console.log('temp data: '+ temp_data)       //        ** can edit in the future
             });
 
             setGetTagsfromFB(temp_data)
@@ -47,11 +47,11 @@ function ShowTags({isClicked}) {
     <div >
         {getTagsfromFB?.map((tag, index) => {       //This step I did some redundant work, which I could have directly acces, look at ShowWords.js
             console.log('index: ', index);
-            return <>
-                    <li key={"ShowTags-"+index} >{tag.Tag}</li>
-                    <EditTag tag={tag} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn} key={tag.TagID}/>
-                    <DeleteTag tag={tag} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn} key={tag.TagID}/>
-                   </>
+            return <div key={"ShowTags-"+tag.TagID}>
+                    <li >{tag.Tag}</li>
+                    <EditTag tag={tag} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn} />
+                    <DeleteTag tag={tag} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn} />
+                   </div>
             })
         }
     </div>

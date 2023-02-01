@@ -5,7 +5,7 @@ import { temp_addData } from '../store/actions/actions'
 
 import * as uuid from "uuid";
 
-function ExtraWords( {element} ) {
+function ExtraWords( {element, index} ) {
 
     const LangID = useSelector(state => state.LangID)
     const selected = useSelector(state => state.Selected.selected)                  //      \ C   m   i   a   i   n
@@ -23,14 +23,15 @@ function ExtraWords( {element} ) {
     const addToSelected = async(e) => {
         e.preventDefault()
 
-        dispatch( {type:"Add_selected", payload: {Word: element["word"], WordID: this_uuid}} )                // need to adjust although its not affectin the whole system now
+        dispatch( {type:"Add_selected", payload: {Word: element["word"]}} )                // need to adjust although its not affectin the whole system now
 
-        dispatch( {type:"Add_selectedArrayID", payload: this_uuid } )                // need to adjust although its not affectin the whole system now
+        // dispatch( {type:"Add_selectedArrayID", payload: this_uuid } )                // need to adjust although its not affectin the whole system now
     }
 
-    return (
-    <button className={selected_words.includes(element["word"])? "invisible": "visible"} onClick={(e) => addToSelected(e) }>{element["word"]}</button>
-  )
+    return <p key={"extra-words-" + element["word"] + "-" + index}>
+            <button className={selected_words.includes(element["word"])? "invisible": "visible"} onClick={(e) => addToSelected(e) }>{element["word"]}</button>
+    </p>
+
 }
 
 export default ExtraWords
