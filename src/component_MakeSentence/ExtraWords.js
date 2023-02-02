@@ -23,7 +23,7 @@ function ExtraWords( {element, index} ) {
     const addToSelected = async(e) => {
         e.preventDefault()
 
-        dispatch( {type:"Add_selected", payload: {Word: element["word"]}} )                // need to adjust although its not affectin the whole system now
+        dispatch( {type:"Add_selected", payload: {Word: element["word"], WordID:"ExtraWord"}} )                // need to adjust although its not affectin the whole system now
 
         // dispatch( {type:"Add_selectedArrayID", payload: this_uuid } )                // need to adjust although its not affectin the whole system now
     }

@@ -28,7 +28,7 @@ function AddLangBtn() {
 
     useEffect(() => {
             onSnapshot( colRef, snapshot => {
-            snapshot.forEach( doc =>  temp_data.push({Language:doc.data()['Language'], id:doc.id}), console.log(temp_data) )
+            snapshot.forEach( doc =>  temp_data.push({Language:doc.data()['Language'], id:doc.id}) )
             console.log('temp data: '+ temp_data);
             setGetLangfromFB(temp_data)
             temp_data = []

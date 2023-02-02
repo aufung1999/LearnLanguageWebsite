@@ -183,6 +183,20 @@ const sentence_acceptReducer = ( state = "", action ) => {
             return state
     }
 }
+
+//######################################################################################################
+
+const store_accepted_phraseReducer = ( state = [], action ) => {
+    switch (action.type){
+        case 'store_accepted_phrase':
+            return [...state, action.payload]
+        case 'remove_store_accepted_phrase':
+            return []
+        default:
+            return state
+    }
+}
+
 //######################################################################################################
 
 const count_downReducer = ( state = 0, action ) => {
@@ -195,18 +209,6 @@ const count_downReducer = ( state = 0, action ) => {
             return state
     }
 }
-
-//######################################################################################################
-
-const store_accepted_phraseReducer = ( state = [], action ) => {
-    switch (action.type){
-        case 'store_accepted_phrase':
-            return [...state, action.payload]
-        default:
-            return state
-    }
-}
-
 
 //######################################################################################################
 
@@ -231,7 +233,7 @@ const reducers = combineReducers({
     Temp_WA: Temp_wordsAssociationReducer,
 
     sentence_accept: sentence_acceptReducer,
-    store_accepted_phrase: store_accepted_phraseReducer,
+    store_accepted_phrases: store_accepted_phraseReducer,
 
     count_down: count_downReducer,
 

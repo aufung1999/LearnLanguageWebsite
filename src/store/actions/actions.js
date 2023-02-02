@@ -221,9 +221,15 @@ export const accepted_phrase = (data, LangID) => {
 
 //-----storeAccepted Phrase/ sentence----------------------------------------------------------------------------------------------------
 
-const store_accepted_phrase = (data) => ({
-    type: 'store_accepted_phrase',
-    payload:  data
-})
+export const store_accepted_phrase = (data, LangID) => {
+
+    return async(dispatch) => {
+        const colRef = collection(db,`Language/${LangID}/accepted_phrase`)
+        addDoc(colRef, Object.assign({}, data)  ) // as the addDoc only accepts object NOT array, I need to convert it first
+
+        dispatch( {type:"store_accepted_phrase", payload: data} )
+    }
+
+}
 
 //-----Accepted Phrase/ sentence----------------------------------------------------------------------------------------------------
