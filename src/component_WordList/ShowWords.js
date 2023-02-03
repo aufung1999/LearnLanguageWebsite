@@ -4,6 +4,7 @@ import { getDocs, collection, doc, onSnapshot } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import EditWord from './EditWord';
 import DeleteWord from './DeleteWord';
+import ShowAcceptedPhrase from './ShowAcceptedPhrase';
 
 function ShowWords({isClicked}) {
     const LangID = useSelector(state => state.LangID)   // Redux
@@ -49,6 +50,7 @@ function ShowWords({isClicked}) {
                     <li> Word: {Word.Word} | Tag: {Word.Tag} | Count: {Word.count}</li>
                     <EditWord Word={Word} index={index} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
                     <DeleteWord Word={Word} parent_editBtn={parent_editBtn} set_parent_editBtn={set_parent_editBtn}/>
+                    <ShowAcceptedPhrase Word={Word}/>
                    </div>
 
             })

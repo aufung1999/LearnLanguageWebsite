@@ -224,8 +224,10 @@ export const accepted_phrase = (data, LangID) => {
 export const store_accepted_phrase = (data, LangID) => {
 
     return async(dispatch) => {
-        const colRef = collection(db,`Language/${LangID}/accepted_phrase`)
-        addDoc(colRef, Object.assign({}, data)  ) // as the addDoc only accepts object NOT array, I need to convert it first
+        const colRef = collection(db, `Language/${LangID}/accepted_phrase`)
+        const convert_data = Object.assign({}, data)
+        console.log('convert_data: ' + convert_data)
+        await addDoc(colRef,  convert_data ) // as the addDoc only accepts object NOT array, I need to convert it first
 
         dispatch( {type:"store_accepted_phrase", payload: data} )
     }

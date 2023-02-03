@@ -142,7 +142,7 @@ const fetchDatabase = (state = [], action) => {
                 word.word !== action.payload["Word"]
             )
         case 'remove_DatamuseAPIDATA':
-            return ''
+            return []
         default:
             return state
     }

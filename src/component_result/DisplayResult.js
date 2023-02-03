@@ -17,25 +17,7 @@ function DisplayResult() {
     const store_accepted_phrases = useSelector(state => state.store_accepted_phrases)
     const LangID = useSelector(state => state.LangID)
 
-    // const [getFromFB, setGetFromFB] = useState([])
 
-    // const colRef = collection(db,`Language/${LangID}/accepted_phrase`)
-
-    // useEffect(() => {
-    //     let getData = []
-
-    //     onSnapshot( colRef, snapshot => {
-
-    //         snapshot.forEach( doc => {  Object.entries(doc.data()).map(entry => entry[1]).map(element => {getData.push(element); console.log('element: ' + JSON.stringify(element))}  )  } )
-
-    //         console.log('getData: ' + JSON.stringify(getData))
-
-    //         setGetFromFB([...getFromFB, getData])
-    //     })
-
-    //     console.log('   getFromFB: ' + JSON.stringify(getFromFB))
-
-    // }, [db])
 
 
 

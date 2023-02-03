@@ -4,12 +4,13 @@ import { Sapling } from "@saplingai/sapling-js/observer";
 import { useDispatch, useSelector } from 'react-redux';
 import { temp_WordsAssociation } from '../store/actions/actions';
 import { accepted_phrase } from '../store/actions/actions';
+import { store_accepted_phrase } from '../store/actions/actions';
 import { useNavigate } from "react-router";
 
 import { db } from '../Firebase';
 import { doc, updateDoc, collection, query, where, getDoc, getDocs } from 'firebase/firestore';
 
-function CheckSentence( {selected} ) {
+function CheckSentence( {selected} ) {  //      <= selected is here The redux selected
 
     const LangID = useSelector(state => state.LangID)
     const Trigger = useSelector(state => state.Temp_WA["Trigger"])
@@ -101,7 +102,8 @@ function CheckSentence( {selected} ) {
 
         if(sentence_accept == "accept"){
 
-            dispatch( {type:"store_accepted_phrase", payload: selected} )
+            dispatch( store_accepted_phrase(selected, LangID) )
+//before -> dispatch( type:"store_accepted_phrase", payload: selected )
 
             selected?.map(word => {
                 console.log('   word: ' + word)
