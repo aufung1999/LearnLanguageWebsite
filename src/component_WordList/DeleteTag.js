@@ -28,9 +28,9 @@ function DeleteTag ( {tag, index, parent_editBtn, set_parent_editBtn} ) {
   }, [deleteBtn])
 
   return (
-    <div>
+    <p className='col m-1 p-2 border'>
       <button onClick={deleteTag} key={"DeleteTagBtn-"+index} > Delete </button>
-    </div>
+    </p>
   )
 }
 

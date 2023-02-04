@@ -1,0 +1,33 @@
+/* .frameRootRootRoot {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 65px 73px 64px 74px;
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+  .button1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-width: 0px;
+    border-radius: 100px;
+    box-sizing: content-box;
+    background-color: #afc89a;
+    cursor: pointer;
+  }
+  .button1:hover {
+    opacity: 70%;
+  }
+  .text1 {
+    width: 38px;
+    height: 15px;
+    font-size: 12px;
+    font-family: Inter;
+    white-space: nowrap;
+  } */

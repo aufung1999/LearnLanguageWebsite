@@ -66,7 +66,7 @@ function EditTag( {tag, index, parent_editBtn, set_parent_editBtn} ) {
     }
 
   return (
-    <div >
+    <p className='col m-1 p-2 border'>
         <button onClick={editTag} key={"EditBtn-"+index} > Edit </button>
         {
             editBtn
@@ -78,7 +78,7 @@ function EditTag( {tag, index, parent_editBtn, set_parent_editBtn} ) {
                 </form>
             </div>
         }
-    </div>
+    </p>
   )
 }
 

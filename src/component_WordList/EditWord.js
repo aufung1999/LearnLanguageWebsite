@@ -56,7 +56,7 @@ function EditWord({Word, index, parent_editBtn, set_parent_editBtn}) {
     }
 
   return (
-    <div>
+    <div className='col m-1 p-2 border'>
         <button onClick={editWord} key={"EditBtn-"+index} > Edit </button>
         {
             editBtn

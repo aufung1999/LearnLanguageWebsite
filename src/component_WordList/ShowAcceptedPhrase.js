@@ -47,16 +47,16 @@ function ShowAcceptedPhrase( {Word} ) {
     }, [db])
 
     return (
-    <div>
+    <div >
         {
             getFromFB?.map(sentence =>{
                     const extract_words = []
 
-                    sentence.map(word => extract_words.push(    word["Word"])   )
+                    sentence.map(word => extract_words.push(word["Word"], " ")   )
 
                     console.log('extract_words: ' + extract_words)
 
-                    return <> {extract_words} </>
+                    return <div className='border'> {extract_words} </div>
                 }
             )
         }

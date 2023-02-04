@@ -29,7 +29,7 @@ function DeleteWord( {Word, index, parent_editBtn, set_parent_editBtn} ) {
     }, [deleteBtn])
 
   return (
-    <div>
+    <div className='col m-1 p-2 border'>
     <button onClick={deleteWord} key={"DeleteBtn-"+index} > Delete </button>
   </div>
   )
