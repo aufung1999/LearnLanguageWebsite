@@ -18,6 +18,7 @@ function ShowWords({ isClicked }) {
   let temp_data = [];
 
   useEffect(() => {
+
     async function getsomething() {
       onSnapshot(collection(db, "Language/", LangID, "/words"), (snapshot) => {
         snapshot.forEach((doc) => {
@@ -40,6 +41,7 @@ function ShowWords({ isClicked }) {
     }
 
     getsomething();
+    
   }, [isClicked, parent_editBtn, Tags]);
 
   return (
@@ -72,7 +74,7 @@ function ShowWords({ isClicked }) {
                     </div>
 
                     <div className="row border">
-                        <ShowAcceptedPhrase Word={Word} />
+                      <ShowAcceptedPhrase Word={Word} />
                     </div>
 
                   </div>

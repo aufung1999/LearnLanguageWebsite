@@ -1,5 +1,5 @@
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -36,7 +36,7 @@ function WordList() {
     e.preventDefault();
 
     const docRef = collection(db, "Language/" + LangID + "/words");
-    await addDoc(docRef, { word: inputValue, tag: selectedTag, count: 0 }); //        ** can edit in the future
+    await addDoc(docRef, { word: inputValue, tag: selectedTag, count: 0, createdAt: serverTimestamp() }); //        ** can edit in the future
 
     console.log(selectedTag, inputValue);
   };

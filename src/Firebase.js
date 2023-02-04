@@ -5,6 +5,8 @@ import {
   addDoc
 } from "firebase/firestore"
 
+import "firebase/auth"
+
 const firebaseConfig = {
   apiKey: "AIzaSyBd14sGGgte7YoNYai-u3FELSGWUImnxSw",
   authDomain: "learn-language-76e95.firebaseapp.com",
