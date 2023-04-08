@@ -43,7 +43,7 @@ function AddLangBtn() {
   const navigateLL = (id) => {
     console.log("id: " + id);
     dispatch({ type: "LangIDRedux", payload: id });
-    navigate("/learnlang");
+    navigate("/wordlist");
   };
 
   return (

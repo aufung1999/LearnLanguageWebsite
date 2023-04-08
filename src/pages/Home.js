@@ -27,7 +27,7 @@ const Home = () => {
     <>
       <h1>Home</h1>
 
-      <EditLangBtn/>
+      <EditLangBtn />
 
       <div className="d-flex justify-content-center flex-wrap">
         <AddLangBtn />
@@ -61,7 +61,7 @@ const Home = () => {
         </form>
       )}
 
-      <FrameRootRootRoot1 />
+      {/* <FrameRootRootRoot1 /> */}
     </>
   );
 };

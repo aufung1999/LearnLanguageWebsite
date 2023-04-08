@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
-import ClockScript from '../component_MakeSentence/ClockScript';
+import ClockScript from '../component_FindWord/ClockScript';
 import ShowWords_MS from '../component_MakeSentence/ShowWords_MS';
 
 function MakeSentence() {

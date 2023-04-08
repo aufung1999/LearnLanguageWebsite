@@ -209,6 +209,26 @@ const count_downReducer = ( state = 0, action ) => {
             return state
     }
 }
+//######################################################################################################
+
+const selectWordsReducer = ( state = 0, action ) => {
+    switch (action.type){
+        case 'selection-words':
+            return action.payload
+        default:
+            return state
+    }
+}
+//######################################################################################################
+
+const findWordsReducer = ( state = 0, action ) => {
+    switch (action.type){
+        case 'find-words':
+            return action.payload
+        default:
+            return state
+    }
+}
 
 //######################################################################################################
 
@@ -236,6 +256,10 @@ const reducers = combineReducers({
     store_accepted_phrases: store_accepted_phraseReducer,
 
     count_down: count_downReducer,
+
+
+    findWords: findWordsReducer,
+    selectWords: selectWordsReducer
 
 
 })

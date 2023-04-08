@@ -45,9 +45,9 @@ function WordList() {
     <div className="container">
       <div className="h1">WordList</div>
 
-      <div className="row justify-content-center">
+      <div className="row border justify-content-center">
         <button
-          className="col-2 btn border"
+          className="col-2 btn border me-5"
           onClick={() => {
             navigate("/");
           }}
@@ -55,12 +55,20 @@ function WordList() {
           Home
         </button>
         <button
-          className="col-2 btn border"
+          className="col-2 btn border me-5"
           onClick={() => {
             navigate("/makesentence");
           }}
         >
           Make Sentence
+        </button>
+        <button
+          className="col-2 btn border me-5"
+          onClick={() => {
+            navigate("/find-word");
+          }}
+        >
+          Find Word in Picture
         </button>
       </div>
 
