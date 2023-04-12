@@ -1,5 +1,11 @@
 import { Dropdown, DropdownButton } from "react-bootstrap";
-import { addDoc, collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -36,18 +42,25 @@ function WordList() {
     e.preventDefault();
 
     const docRef = collection(db, "Language/" + LangID + "/words");
-    await addDoc(docRef, { word: inputValue, tag: selectedTag, count: 0, createdAt: serverTimestamp() }); //        ** can edit in the future
+    await addDoc(docRef, {
+      word: inputValue,
+      tag: selectedTag,
+      count: 0,
+      createdAt: serverTimestamp(),
+    }); //        ** can edit in the future
 
     console.log(selectedTag, inputValue);
   };
 
   return (
     <div className="container">
-      <div className="h1">WordList</div>
+      <div className="h2 border border-5 border-top-0 border-end-0 mt-2 mb-4">
+        WordList
+      </div>
 
-      <div className="row border justify-content-center">
+      <div className="row border border-0 justify-content-center mb-4">
         <button
-          className="col-2 btn border me-5"
+          className="col-2 btn border me-5 shadow bg-gradient-primary rounded p-2"
           onClick={() => {
             navigate("/");
           }}
@@ -55,81 +68,117 @@ function WordList() {
           Home
         </button>
         <button
-          className="col-2 btn border me-5"
+          className="col-2 btn border me-5 shadow bg-gradient-primary rounded p-2"
           onClick={() => {
             navigate("/makesentence");
           }}
         >
-          Make Sentence
+          Make a Phrase
         </button>
         <button
-          className="col-2 btn border me-5"
+          className="col-2 btn border me-5 shadow bg-gradient-primary rounded p-2"
           onClick={() => {
             navigate("/find-word");
           }}
         >
-          Find Word in Picture
+          Find the Words
         </button>
       </div>
 
       <br />
 
-      <div className="row justify-content-center">
-        <form onSubmit={(e) => addTagstoDB(e)}>
-          <input
-            type="text"
-            className="col"
-            value={tagValue}
-            onChange={(e) => setTagValue(e.target.value)}
-          ></input>
-          <input
-            type="submit"
-            className="col btn mb-2 mb-md-0 btn-outline-light btn-block border-50 text-secondary"
-            onClick={() => {
-              setIsClicked(!isClicked);
-            }}
-          ></input>
+      <div className="border border-5 p-5 shadow">
+        <form
+          className="row justify-content-center"
+          onSubmit={(e) => addTagstoDB(e)}
+        >
+          <div className="col"></div>
+          <div className="col form-floating mb-3">
+            <input
+              type="text"
+              className="form-control border-0 shadow-sm "
+              value={tagValue}
+              onChange={(e) => setTagValue(e.target.value)}
+            ></input>
+            <label
+              htmlFor="floatingInput"
+              className="d-flex justify-content-center"
+            >
+              Word Tag
+            </label>
+          </div>
+          <div className="col">
+            <input
+              type="submit"
+              className="col btn mb-2 mb-md-0 btn-outline-light btn-block border-50 text-secondary"
+              onClick={() => {
+                setIsClicked(!isClicked);
+              }}
+            />
+          </div>
+          <div className="col"></div>
         </form>
-      </div>
 
-      <div className="row">
-        <ShowTags isClicked={isClicked} />
+        <div className="row">
+          <ShowTags isClicked={isClicked} />
+        </div>
       </div>
 
       <br />
 
-      <div className="row">
-        <form className="d-flex " onSubmit={(e) => addWordstoDB(e)}>
-          <input
-            type="text"
-            className=""
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-          ></input>
+      <div className="border border-5 p-4 shadow">
+        <div className="row mb-3">
+          <form
+            className="d-flex justify-content-center mb-3"
+            onSubmit={(e) => addWordstoDB(e)}
+          >
+            <div className="col"></div>
+            <div className="col form-floating border-bottom d-flex align-items-center shadow me-3">
+              <input
+                type="text"
+                className="form-control border-0 shadow-sm "
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+              />
+              <label
+                htmlFor="floatingInput"
+                className="d-flex justify-content-center"
+              >
+                Vocabulary
+              </label>
+            </div>
 
-          <DropdownButton title="Tags">
-            {Tags?.map((Tag) => {
-              return (
-                <Dropdown.Item
-                  value={Tag.Tag}
-                  onClick={() => setSelectedTag(Tag.Tag)}
-                  key={Tag.TagID}
-                >
-                  {Tag.Tag}
-                </Dropdown.Item>
-              );
-            })}
-          </DropdownButton>
+            {/* <div className="col"> */}
+            <DropdownButton
+              className="border border-0  d-flex align-items-center me-3"
+              title="Tags"
+            >
+              {Tags?.map((Tag) => {
+                return (
+                  <Dropdown.Item
+                    value={Tag.Tag}
+                    onClick={() => setSelectedTag(Tag.Tag)}
+                    key={Tag.TagID}
+                  >
+                    {Tag.Tag}
+                  </Dropdown.Item>
+                );
+              })}
+            </DropdownButton>
+            {/* </div> */}
 
-          <input
-            type="submit"
-            className="btn mb-2 mb-md-0 btn-outline-light btn-block border-50 text-secondary "
-          ></input>
-        </form>
-      </div>
+            <input
+              type="submit"
+              className="border border-0 shadow-sm d-flex align-items-center btn mb-2 mb-md-0 btn-outline-light btn-block border-50 text-secondary "
+            ></input>
 
-      <div className="row row-cols-auto">
-        <ShowWords isClicked={isClicked} />
+            <div className="col"></div>
+          </form>
+        </div>
+
+        <div className="row row-cols-auto">
+          <ShowWords isClicked={isClicked} />
+        </div>
       </div>
     </div>
   );

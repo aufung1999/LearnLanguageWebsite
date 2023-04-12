@@ -49,10 +49,10 @@ function ShowTags({ isClicked }) {
           return (
             <div className="col">
               <div className="card">
-                <div className="card-body text-center">
+                <div className="card-body text-center ">
                   <div key={"ShowTags-" + tag.TagID}>
-                    <p>{tag.Tag}</p>
-                    <div className="row border">
+                    <p className="border-bottom p-3">{tag.Tag}</p>
+                    <div className="row ">
                       <EditTag
                         tag={tag}
                         index={index}

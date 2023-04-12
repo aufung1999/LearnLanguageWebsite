@@ -9,11 +9,14 @@ import Result from "./pages/Result";
 import FindWord from "./pages/FindWord";
 import FindWordResult from "./pages/FindWordResult";
 
+
+
 function App() {
   return (
-    <Router>
-      <Routes>
+    <Router >
+      <Routes >
         <Route exact path="/" element={<Home />} />
+
 
         <Route exact path="/learnlang" element={<LearnLang />} />
 

@@ -18,7 +18,6 @@ function ShowWords({ isClicked }) {
   let temp_data = [];
 
   useEffect(() => {
-
     async function getsomething() {
       onSnapshot(collection(db, "Language/", LangID, "/words"), (snapshot) => {
         snapshot.forEach((doc) => {
@@ -41,7 +40,6 @@ function ShowWords({ isClicked }) {
     }
 
     getsomething();
-    
   }, [isClicked, parent_editBtn, Tags]);
 
   return (
@@ -54,7 +52,10 @@ function ShowWords({ isClicked }) {
               <div className="card">
                 <div className="card-body text-center">
                   <div key={"ShowTags-" + Word.WordID}>
-
+                    <div className="row border d-flex justify-content-center p-3">Word: {Word.Word}</div>
+                    <div className="row border">
+                      Word: {Word.Word} | Tag: {Word.Tag} | Count: {Word.count}
+                    </div>
                     <div className="row border">
                       Word: {Word.Word} | Tag: {Word.Tag} | Count: {Word.count}
                     </div>
@@ -76,7 +77,6 @@ function ShowWords({ isClicked }) {
                     <div className="row border">
                       <ShowAcceptedPhrase Word={Word} />
                     </div>
-
                   </div>
                 </div>
               </div>

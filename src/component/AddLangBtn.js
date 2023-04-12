@@ -54,14 +54,16 @@ function AddLangBtn() {
         getLangfromFB.map((element) => {
           return (
             <div className="d-flex justify-content-around" key={element.id}>
-              <button
-                type="button"
-                className="btn mb-2 mb-md-0 btn-round btn-outline-light btn-block border-50 text-secondary "
-                key={element.id}
-                onClick={() => navigateLL(element.id)}
-              >
-                {element["Language"]}
-              </button>
+              <div className="shadow p-2  bg-white rounded">
+                <button
+                  type="button"
+                  className="btn mb-2 mb-md-0 btn-round btn-outline-light btn-block border-50 text-secondary "
+                  key={element.id}
+                  onClick={() => navigateLL(element.id)}
+                >
+                  {element["Language"]}
+                </button>
+              </div>
               <DeleteBtn Language={element["Language"]} id={element.id} />
             </div>
           );
