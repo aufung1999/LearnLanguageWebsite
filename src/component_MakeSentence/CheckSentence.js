@@ -100,7 +100,9 @@ function CheckSentence({ selected }) {
 
         console.log("filteredArray: " + union_APN_ASM);
         console.log(index + "   isTriggerIncluded: " + isTriggerIncluded);
-        console.log(index + "   isPopular_NounsIncluded: " + isPopular_NounsIncluded);
+        console.log(
+          index + "   isPopular_NounsIncluded: " + isPopular_NounsIncluded
+        );
 
         // console.log(index + '   isSimilar_MeaningIncluded: ' + Array_Similar_Meaning[index+1]);
         console.log(index + "   isLeft_Context: " + isLeft_Context);
@@ -147,19 +149,24 @@ function CheckSentence({ selected }) {
   }, [isClicked, Random_Words]);
 
   return (
-    <>
-      <form onSubmit={checkSentence} className="col-auto m-1 p-1 border">
+    <div className=" d-flex justify-content-center">
+      <form onSubmit={checkSentence} className="col-auto m-1 p-1">
         <GrammarlyEditorPlugin
           clientId="client_R4q5cLZtGpLoz2LPgg8x4Q"
           config={{ documentDialect: "british" }}
-        >
-          {/* <textarea value={displayValue}></textarea> */}
-        </GrammarlyEditorPlugin>
-        <input type="submit"></input>
+        ></GrammarlyEditorPlugin>
+        <input
+          type="submit"
+          style={{
+            boxShadow: "0 0 12px rgba(255,0,0, 0.8)",
+            backgroundColor: "rgba(255,0,0, 0.05)",
+          }}
+          className="border"
+        ></input>
       </form>
 
       <div className="col-auto m-1 p-1 border">
-          <button
+        <button
           className={Random_Words.length == 0 ? "visible" : "invisible"}
           onClick={() => {
             navigate("/result");
@@ -168,8 +175,7 @@ function CheckSentence({ selected }) {
           Result
         </button>
       </div>
-
-    </>
+    </div>
   );
 }
 

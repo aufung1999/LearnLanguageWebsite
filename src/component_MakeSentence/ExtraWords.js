@@ -30,10 +30,19 @@ function ExtraWords({ element, index }) {
   };
 
   return (
-    <div key={"extra-words-" + element["word"] + "-" + index} className="col">
+    <div
+      key={"extra-words-" + element["word"] + "-" + index}
+      className="col h-100"
+    >
       <button
+        style={{
+          boxShadow: "0 0 5px rgba(0,255,255, 0.5)",
+          backgroundColor: "rgba(0,255,255, 0.05)",
+        }}
         className={
-          selected_words.includes(element["word"]) ? "invisible" : "visible"
+          selected_words.includes(element["word"])
+            ? "invisible"
+            : "visible border"
         }
         onClick={(e) => addToSelected(e)}
       >

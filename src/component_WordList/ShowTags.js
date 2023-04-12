@@ -51,7 +51,15 @@ function ShowTags({ isClicked }) {
               <div className="card">
                 <div className="card-body text-center ">
                   <div key={"ShowTags-" + tag.TagID}>
-                    <p className="border-bottom p-3">{tag.Tag}</p>
+                    <p
+                      className="border-bottom p-3"
+                      style={{
+                        boxShadow: "0 0 12px rgba(255,165,0, 0.5)",
+                        backgroundColor: "rgba(255,165,0, 0.1)",
+                      }}
+                    >
+                      {tag.Tag}
+                    </p>
                     <div className="row ">
                       <EditTag
                         tag={tag}

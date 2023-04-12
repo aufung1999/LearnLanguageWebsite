@@ -7,14 +7,17 @@ function DisplayDatamuse() {
   // console.log('   DatamuseAPIData: ' + JSON.stringify(DatamuseAPIData));
 
   return (
-    <div className="container">
+    <div className="container ">
       <div className="row">
         {Object.entries(DatamuseAPIData)
           .map((entry) => entry[1])
           ?.map((element, index) => {
             console.log("   element: " + JSON.stringify(element));
             return (
-              <div className="col-auto m-2 p-1 border">
+              <div
+                className="col-auto m-2 p-1 "
+
+              >
                 <ExtraWords element={element} index={index} />
               </div>
             );

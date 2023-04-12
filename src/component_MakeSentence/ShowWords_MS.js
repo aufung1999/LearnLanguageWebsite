@@ -62,18 +62,24 @@ function ShowWords_MS() {
 
   return (
     <div className="container">
-
-      <div className="row m-5 border">
+      <div className="row m-5 border-bottom d-flex justify-content-center">
         {Random_Words?.map((word, index) => {
           // Can edit here in the future
 
           return (
-            <div className="col-auto">
+            <div className="col-auto mb-3">
               <div key={"Random_Words" + { index }}>
                 <button
                   type="button"
+                  // className="row rounded-pill d-flex justify-content-center p-3 mb-3"
+                  style={{
+                    boxShadow: "0 0 5px rgba(0,255,255, 0.5)",
+                    backgroundColor: "rgba(0,255,255, 0.05)",
+                  }}
                   className={
-                    selected_words.includes(word.Word) ? "invisible" : "visible"
+                    selected_words.includes(word.Word)
+                      ? "invisible"
+                      : "visible border d-flex justify-content-center p-3 me-3"
                   }
                   value={word.Word}
                   onClick={(e) => selectedWord(e, word)}
@@ -91,7 +97,7 @@ function ShowWords_MS() {
         <FetchDatamuse Random_Words={Random_Words} />
       </div>
 
-      <div className="row m-5 border">
+      <div className="row m-5 border-bottom">
         {selected?.map((selectedWord, index) => {
           console.log("selectedWord: " + selectedWord);
 
@@ -99,9 +105,13 @@ function ShowWords_MS() {
             <div className="col-auto" key={"selected" + index}>
               <button
                 type="button"
+                style={{
+                        boxShadow: "0 0 12px rgba(255,165,0, 0.5)",
+                        backgroundColor: "rgba(255,165,0, 0.1)",
+                      }}
                 className={
                   selected_words.includes(selectedWord.Word)
-                    ? "visible"
+                    ? "visible border p-3"
                     : "invisible"
                 }
                 onClick={(e) => unselectedWord(e, selectedWord)}
@@ -114,10 +124,9 @@ function ShowWords_MS() {
         })}
       </div>
 
-      <div className="row m-5 border">
+      <div className="row m-5 ">
         <CheckSentence selected={selected} />
       </div>
-
     </div>
   );
 }

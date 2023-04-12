@@ -20,7 +20,7 @@ function FindWord() {
   const [randomWords, setRandomWords] = useState(null);
 
   const [selectWords, setSelectWords] = useState([]);
-  const [countDown, setCountDown] = useState(10); // Time COUNT here
+  const [countDown, setCountDown] = useState(1000); // Time COUNT here
 
   const [isStart, setIsStart] = useState(false);
 
@@ -131,17 +131,28 @@ function FindWord() {
   //-------------------------------------------------------------------------------
 
   return (
-    <div>
-      <button
-        className="btn mx-auto border"
-        onClick={() => {
-          navigate("/wordlist");
-        }}
-      >
-        Word List
-      </button>
+    <div className="container">
+      <div className="h2 border border-5 border-top-0 border-end-0 mt-2 mb-4">
+        <div className="ms-3">Find the Word</div>
+      </div>
 
-      <button onClick={() => setIsStart(true)}>Start</button>
+      <div className="row border border-0 justify-content-center mb-4">
+        <button
+          className="col-2 btn border me-5 shadow bg-gradient-primary rounded p-2"
+          onClick={() => {
+            navigate("/wordlist");
+          }}
+        >
+          Word List
+        </button>
+      </div>
+
+      <button
+        className="col-2 btn border me-5 shadow bg-gradient-primary rounded p-1"
+        onClick={() => setIsStart(true)}
+      >
+        Start
+      </button>
 
       {findWords && (
         <div>

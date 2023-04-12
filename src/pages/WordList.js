@@ -55,7 +55,7 @@ function WordList() {
   return (
     <div className="container">
       <div className="h2 border border-5 border-top-0 border-end-0 mt-2 mb-4">
-        WordList
+        <div className="ms-3">WordList</div>
       </div>
 
       <div className="row border border-0 justify-content-center mb-4">

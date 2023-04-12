@@ -48,19 +48,34 @@ function ShowWords({ isClicked }) {
         {Words?.map((Word, index) => {
           console.log("word: " + Word.Word);
           return (
-            <div className="col">
-              <div className="card">
-                <div className="card-body text-center">
-                  <div key={"ShowTags-" + Word.WordID}>
-                    <div className="row border d-flex justify-content-center p-3">Word: {Word.Word}</div>
-                    <div className="row border">
-                      Word: {Word.Word} | Tag: {Word.Tag} | Count: {Word.count}
+            <div className="col vw-100 d-flex justify-content-center">
+              <div className="card ">
+                <div className="card-body text-center d-flex justify-content-center">
+                  <div className="p-3 " key={"ShowTags-" + Word.WordID}>
+                    <div
+                      className="row rounded-pill d-flex justify-content-center p-3 mb-3"
+                      style={{
+                        // width:"100px",
+                        // display:"flex",
+                        // justifyContent:"center",
+                        boxShadow: "0 0 5px rgba(0,255,255, 0.5)",
+                        backgroundColor: "rgba(0,255,255, 0.05)",
+                      }}
+                    >
+                      Word: {Word.Word}
                     </div>
-                    <div className="row border">
-                      Word: {Word.Word} | Tag: {Word.Tag} | Count: {Word.count}
+                    <div
+                      className="row justify-content-center p-2 mb-3"
+                      style={{
+                        boxShadow: "0 0 12px rgba(255,165,0, 0.5)",
+                        backgroundColor: "rgba(255,165,0, 0.1)",
+                      }}
+                    >
+                      {Word.Tag}
                     </div>
+                    {/* <div className="row border">Count: {Word.count}</div> */}
 
-                    <div className="row border d-flex justify-content-center">
+                    <div className="row d-flex justify-content-center mb-2">
                       <EditWord
                         Word={Word}
                         index={index}
@@ -74,7 +89,7 @@ function ShowWords({ isClicked }) {
                       />
                     </div>
 
-                    <div className="row border">
+                    <div className="row">
                       <ShowAcceptedPhrase Word={Word} />
                     </div>
                   </div>

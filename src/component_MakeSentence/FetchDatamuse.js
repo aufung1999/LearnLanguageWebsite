@@ -13,7 +13,7 @@ function FetchDatamuse() {
   const dispatch = useDispatch();
 
   const urls_array = [];
-  const [isClicked, SetIsClicked] = useState(false)
+  const [isClicked, SetIsClicked] = useState(false);
 
   Random_Words?.map((word) => {
     urls_array.push("https://api.datamuse.com/words?rel_jja=" + word.Word);
@@ -21,18 +21,25 @@ function FetchDatamuse() {
 
   const hint = () => {
     dispatch(addDatamuseAPIData(urls_array));
-    SetIsClicked(!isClicked)
+    SetIsClicked(!isClicked);
   };
 
   return (
-    <div className="border" key="FetchDatamuse">
-      <div className="">
-        <button onClick={hint}>Hint</button>
+    <div className="border p-3" key="FetchDatamuse">
+      <div className="mb-2">
+        <button
+          onClick={hint}
+          style={{
+            boxShadow: "0 0 5px rgba(251, 192, 147, 0.5)",
+            backgroundColor: "rgba(251, 192, 147, 0.05)",
+          }}
+          className="border "
+        >
+          Hint
+        </button>
       </div>
 
-      <div className="col-auto border">
-        {isClicked && <DisplayDatamuse />}
-      </div>
+      <div className="col-auto border">{isClicked && <DisplayDatamuse />}</div>
     </div>
   );
 }
