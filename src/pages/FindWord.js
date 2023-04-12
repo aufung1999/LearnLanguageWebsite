@@ -131,7 +131,7 @@ function FindWord() {
   //-------------------------------------------------------------------------------
 
   return (
-    <div className="container">
+    <div className="container ">
       <div className="h2 border border-5 border-top-0 border-end-0 mt-2 mb-4">
         <div className="ms-3">Find the Word</div>
       </div>
@@ -148,20 +148,26 @@ function FindWord() {
       </div>
 
       <button
-        className="col-2 btn border me-5 shadow bg-gradient-primary rounded p-1"
+        className="col-1 btn border mb-3 me-5 shadow bg-gradient-primary rounded p-1"
+        style={{
+          boxShadow: "0 0 10px rgba(240,0,0, 1)",
+          backgroundColor: "rgba(240,0,0, 0.0)",
+        }}
         onClick={() => setIsStart(true)}
       >
         Start
       </button>
 
       {findWords && (
-        <div>
-          <div>You need to find {findWords.length} word(s)</div>
+        <div className="border d-flex justify-content-center flex-row flex-wrap mb-5">
+          <div className="w-100 text-center" style={{ fontSize: "35px" }}>
+            You need to find {findWords.length} word(s)
+          </div>
           <ClockScript setCountDown={setCountDown} countDown={countDown} />
         </div>
       )}
 
-      <div className="container border d-flex flex-row">
+      <div className="container border d-flex flex-row mb-5">
         {randomWords?.map((each, index) =>
           index % 3 === 0 ? (
             <div key={index} className="row">
@@ -202,13 +208,29 @@ function FindWord() {
         )}
       </div>
 
-      <div>
+      <div className="d-inline-flex justify-content-center">
         {selectWords?.map((each, index) =>
           index < wordsNo ? (
             typeof selectWords.at((index + 1) * -1) === "object" ? (
-              <div>{selectWords.at((index + 1) * -1).Word}</div>
+              <div
+                className="border p-3"
+                style={{
+                  boxShadow: "0 0 12px rgba(255,165,0, 0.5)",
+                        backgroundColor: "rgba(255,165,0, 0.1)",
+                }}
+              >
+                {selectWords.at((index + 1) * -1).Word}
+              </div>
             ) : (
-              <div>{selectWords.at((index + 1) * -1)}</div>
+              <div
+                className="border p-3"
+                style={{
+                  boxShadow: "0 0 12px rgba(255,165,0, 0.5)",
+                  backgroundColor: "rgba(255,165,0, 0.1)",
+                }}
+              >
+                {selectWords.at((index + 1) * -1)}
+              </div>
             )
           ) : null
         )}

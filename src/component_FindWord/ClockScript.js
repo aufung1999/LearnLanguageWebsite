@@ -17,7 +17,7 @@ function ClockScript({ setCountDown, countDown }) {
     return () => clearInterval(timerId);
   }, []);
 
-  return <div>{countDown}</div>;
+  return <div className="shadow p-2"  style={{fontSize:"35px"}}>{countDown}</div>;
 }
 
 export default ClockScript;

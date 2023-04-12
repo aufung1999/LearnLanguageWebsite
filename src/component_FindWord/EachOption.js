@@ -16,6 +16,11 @@ function EachOption({
             onClick={() =>
               setSelectWords((prev) => [...prev, randomWords[index + VARIANT]])
             }
+            className="border p-3"
+            style={{
+              boxShadow: "0 0 5px rgba(0,255,255, 0.5)",
+              backgroundColor: "rgba(0,255,255, 0.05)",
+            }}
           >
             {randomWords[index + VARIANT].Word}
           </button>
@@ -24,6 +29,11 @@ function EachOption({
             onClick={() =>
               setSelectWords((prev) => [...prev, randomWords[index + VARIANT]])
             }
+            className="border p-3"
+            style={{
+              boxShadow: "0 0 5px rgba(0,255,255, 0.5)",
+              backgroundColor: "rgba(0,255,255, 0.05)",
+            }}
           >
             {randomWords[index + VARIANT]}
           </button>
